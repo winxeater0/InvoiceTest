@@ -1,10 +1,12 @@
 using Application.Interfaces;
 using Application.Mapping;
 using Application.UseCases;
+using Domain.Services;
 using Infrastructure.Context;
 using Infrastructure.Extensions;
 using Infrastructure.Seed;
 using Microsoft.EntityFrameworkCore;
+using Presentation.Xml;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,7 +21,9 @@ builder.Host.UseSerilog((ctx, lc) =>
 // Configuration
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddAutoMapper(typeof(NotaFiscalProfile));
+builder.Services.AddScoped<NotaFiscalXmlParser>();
 builder.Services.AddScoped<INotaFiscalService, ImportarNotaFiscalUseCase>();
+builder.Services.AddScoped<NotaFiscalDomainService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

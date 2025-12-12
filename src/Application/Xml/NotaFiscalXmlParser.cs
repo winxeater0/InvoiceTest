@@ -2,10 +2,11 @@
 using Domain.Entities;
 using System.Xml.Linq;
 
-namespace Application.Xml;
+namespace Presentation.Xml;
 
 public class NotaFiscalXmlParser
 {
+
     public NotaFiscal Parse(string xml)
     {
         var doc = XDocument.Parse(xml);

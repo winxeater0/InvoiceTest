@@ -1,6 +1,5 @@
 ﻿using System;
-using Application.Xml;
-using Domain.Entities;
+using Presentation.Xml;
 using FluentAssertions;
 using Xunit;
 

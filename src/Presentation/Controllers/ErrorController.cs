@@ -7,11 +7,15 @@ namespace Presentation.Controllers;
 public class ErrorController : ControllerBase
 {
     [Route("/error")]
+    [HttpGet]
     public IActionResult HandleError()
     {
         var context = HttpContext.Features.Get<IExceptionHandlerFeature>();
-        var exception = context?.Error;
 
-        return Problem(detail: exception?.Message, statusCode: 500);
+        return Problem(
+            title: "Internal Server Error",
+            detail: context?.Error.Message
+        );
     }
 }
+
