@@ -1,6 +1,7 @@
 ﻿using System;
-using Presentation.Xml;
+using Domain.Exceptions;
 using FluentAssertions;
+using Presentation.Xml;
 using Xunit;
 
 namespace Tests.UnitTests;
@@ -18,20 +19,7 @@ public class NotaFiscalXmlParserTests
     public void Parse_ValidXml_ShouldReturnNotaFiscal()
     {
         string xml = @"
-        <NotaFiscal>
-            <Numero>12345</Numero>
-            <Prestador>
-                <CNPJ>12345678000199</CNPJ>
-            </Prestador>
-            <Tomador>
-                <CNPJ>98765432000188</CNPJ>
-            </Tomador>
-            <DataEmissao>2024-12-10</DataEmissao>
-            <Servico>
-                <Descricao>Teste de serviço</Descricao>
-                <Valor>1500.00</Valor>
-            </Servico>
-        </NotaFiscal>";
+        <NotaFiscal><Numero>12345</Numero><Prestador><CNPJ>12345678000199</CNPJ></Prestador><Tomador><CNPJ>98765432000188</CNPJ></Tomador><DataEmissao>2024-12-10</DataEmissao><Servico><Descricao>Teste de serviço</Descricao><Valor>1500.00</Valor></Servico></NotaFiscal>";
 
         var nota = _parser.Parse(xml);
 
@@ -50,6 +38,6 @@ public class NotaFiscalXmlParserTests
 
         Action act = () => _parser.Parse(invalidXml);
 
-        act.Should().Throw<FormatException>();
+        act.Should().Throw<DomainValidationException>();
     }
 }

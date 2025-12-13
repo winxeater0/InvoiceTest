@@ -1,7 +1,4 @@
-﻿using Application.Interfaces;
-using Application.UseCases;
-using Presentation.Xml;
-using Domain.Interfaces;
+﻿using Domain.Interfaces;
 using Domain.Services;
 using Infrastructure.Context;
 using Infrastructure.Repositories;

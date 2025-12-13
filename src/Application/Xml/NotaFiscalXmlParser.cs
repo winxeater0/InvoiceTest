@@ -1,6 +1,7 @@
-﻿using Domain.Aggregates;
-using Domain.Entities;
+﻿using System.Globalization;
 using System.Xml.Linq;
+using Domain.Aggregates;
+using Domain.Entities;
 
 namespace Presentation.Xml;
 
@@ -24,7 +25,7 @@ public class NotaFiscalXmlParser
             cnpjTomador,
             DateTime.Parse(data),
             descricao,
-            decimal.Parse(valor)
+            decimal.Parse(valor, CultureInfo.InvariantCulture)
         );
 
         return aggregate.NotaFiscal;
